@@ -4,12 +4,41 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'produk',
+    loadChildren: () => import('./produk/produk.module').then(m => m.ProdukPageModule)
+  },
+  {
+    path: 'transaksi',
+    loadChildren: () => import('./transaksi/transaksi.module').then(m => m.TransaksiPageModule)
+  },
+  {
+    path: 'profil',
+    loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule)
+  },
+  {
+    path: 'pengaturan',
+    loadChildren: () => import('./pengaturan/pengaturan.module').then(m => m.PengaturanPageModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then(m => m.AboutPageModule)
+  },
+  {
+    path: 'tabs',
+    children: [
+      { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
+      { path: 'produk', loadChildren: () => import('./produk/produk.module').then(m => m.ProdukPageModule) },
+      { path: 'transaksi', loadChildren: () => import('./transaksi/transaksi.module').then(m => m.TransaksiPageModule) },
+      { path: 'profil', loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule) },
+    ]
   },
 ];
 
