@@ -40,6 +40,10 @@ const routes: Routes = [
       { path: 'profil', loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule) },
     ]
   },
+  {
+    path: 'keranjang',
+    loadChildren: () => import('./keranjang/keranjang.module').then( m => m.KeranjangPageModule)
+  },
 ];
 
 @NgModule({
