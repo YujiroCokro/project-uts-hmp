@@ -10,11 +10,16 @@ import { Produk } from '../services/produk';
 export class ProdukPage implements OnInit {
 
   products: any[] = [];
+  keyword: string = '';
 
   constructor(private produkservice: Produk) { }
 
   ngOnInit() {
     this.products = this.produkservice.products;
+  }
+
+  filterProduk() {
+    this.products = this.produkservice.cariProduk(this.keyword);
   }
 
 }

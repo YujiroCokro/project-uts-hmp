@@ -97,4 +97,16 @@ export class Produk {
     jumlahProduk() {
         return this.products.length;
     }
+
+    cariProduk(keyword: string) {
+        var hasil: any[] = [];
+
+        for (var i = 0; i < this.products.length; i++) {
+            if (this.products[i].nama.toLowerCase().includes(keyword.toLowerCase())) {
+                hasil.push(this.products[i]);
+            }
+        }
+
+        return hasil;
+    }
 }
