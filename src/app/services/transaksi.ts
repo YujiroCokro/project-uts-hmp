@@ -8,7 +8,22 @@ export class Transaksi {
         this.transactions.push(transaksi);
     }
     jumlahTransaksi() {
-        return this.transactions.length;
+        const hariIni = new Date();
+        let jumlah = 0;
+
+        for (const transaksi of this.transactions) {
+            const tanggalTransaksi = new Date(transaksi.tanggal);
+
+            if (
+                tanggalTransaksi.getDate() == hariIni.getDate() &&
+                tanggalTransaksi.getMonth() == hariIni.getMonth() &&
+                tanggalTransaksi.getFullYear() == hariIni.getFullYear()
+            ) {
+                jumlah++;
+            }
+        }
+
+        return jumlah;
     }
     produkTerlaris(): string {
         if (this.transactions.length == 0) {

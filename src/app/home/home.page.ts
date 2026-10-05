@@ -31,4 +31,16 @@ export class HomePage implements OnInit {
     this.produkTerlaris = this.transaksiservice.produkTerlaris();
   }
 
+  jumlahProdukDashboard() {
+    return this.produkservice.jumlahProduk();
+  }
+
+  jumlahTransaksiDashboard() {
+    return this.transaksiservice.jumlahTransaksi();
+  }
+
+  produkTerlarisDashboard() {
+    return this.transaksiservice.produkTerlaris();
+  }
+
 }
