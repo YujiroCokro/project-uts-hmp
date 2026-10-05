@@ -25,4 +25,10 @@ export class HomePage implements OnInit {
     this.produkTerlaris = this.transaksiservice.produkTerlaris();
   }
 
+  ionViewWillEnter() {
+    this.totalProduk = this.produkservice.jumlahProduk();
+    this.totalTransaksi = this.transaksiservice.jumlahTransaksi();
+    this.produkTerlaris = this.transaksiservice.produkTerlaris();
+  }
+
 }

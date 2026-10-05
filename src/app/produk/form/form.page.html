@@ -25,7 +25,12 @@
       </ion-text>
 
       <ion-item>
-        <ion-input label="Kategori" labelPlacement="floating" formControlName="kategori"></ion-input>
+        <ion-select label="Kategori" labelPlacement="floating" placeholder="Pilih kategori" formControlName="kategori">
+          <ion-select-option value="Makanan">Makanan</ion-select-option>
+          <ion-select-option value="Minuman">Minuman</ion-select-option>
+          <ion-select-option value="Snack">Snack</ion-select-option>
+          <ion-select-option value="Kebutuhan Rumah">Kebutuhan Rumah</ion-select-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>

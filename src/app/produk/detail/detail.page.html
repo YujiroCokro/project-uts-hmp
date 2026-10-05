@@ -14,7 +14,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list *ngIf="products">
+  <ion-list id="infoProduk"*ngIf="products">
+    <ion-img class="gambarProduk" [src]="products[id].gambar || 'assets/default.png'"></ion-img>
     <ion-item>
       <ion-label>
         <h1>{{ products[id].nama }}</h1>
@@ -26,7 +27,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-button expand="block" [disabled]="products[id].stok == 0" (click)="tambahKeranjang()">
+  <ion-button *ngIf="products" expand="block" [disabled]="products[id].stok == 0" (click)="tambahKeranjang()">
     Tambah ke Keranjang
   </ion-button>
 </ion-content>

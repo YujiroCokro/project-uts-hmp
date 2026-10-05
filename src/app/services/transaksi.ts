@@ -15,6 +15,21 @@ export class Transaksi {
             return 'Belum ada transaksi';
         }
 
-        return '';
+        const hitung: any = {};
+        for (const t of this.transactions) {
+            for (const item of t.items) {
+                hitung[item.nama] = (hitung[item.nama] || 0) + 1;
+            }
+        }
+
+        let terlaris = '';
+        let max = 0;
+        for (const nama in hitung) {
+            if (hitung[nama] > max) {
+                max = hitung[nama];
+                terlaris = nama;
+            }
+        }
+        return terlaris + ' (' + max + ' terjual)';
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Produk } from '../../services/produk';
 import { Keranjang } from '../../services/keranjang';
+import { AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail',
@@ -15,17 +16,34 @@ export class DetailPage implements OnInit {
   products: any[] = [];
 
   constructor(
-    private route:ActivatedRoute,
-    private produkService:Produk,
-    private keranjangService:Keranjang
+    private route: ActivatedRoute,
+    private produkService: Produk,
+    private keranjangService: Keranjang,
+    private animationCtrl: AnimationController
   ) { }
 
   ngOnInit() {
     this.products = this.produkService.products;
 
     this.route.params.subscribe(params => {
-      this.id = params['id'];
+      this.id = Number(params['id']);
     });
+  }
+
+  ionViewDidEnter() {
+    this.fadeInInfo();
+  }
+
+  fadeInInfo() {
+    const item = document.getElementById('infoProduk') as HTMLElement;
+    if (!item) return;
+
+    const animation = this.animationCtrl.create()
+      .addElement(item)
+      .duration(500)
+      .fromTo('opacity', '0', '1')
+      .fromTo('transform', 'translateY(20px)', 'translateY(0)');
+    animation.play();
   }
 
   tambahKeranjang() {

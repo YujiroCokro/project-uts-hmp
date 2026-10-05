@@ -8,10 +8,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-list *ngIf="daftarTransaksi.length > 0">
+  <ion-list *ngIf="transaksiService.transactions.length > 0">
     <ion-list-header>Daftar Riwayat</ion-list-header>
     <!-- Setiap transaksi bisa diklik untuk membuka halaman detail berdasarkan index-nya -->
-    <ion-item *ngFor="let trx of daftarTransaksi; let i = index" (click)="tampilkanDetail(i)" button>
+    <ion-item *ngFor="let trx of transaksiService.transactions; let i = index" (click)="tampilkanDetail(i)" button>
       <ion-label>
         <h3>Transaksi #{{ i + 1 }}</h3>
         <p>Tanggal: {{ trx.tanggal | date:'medium' }}</p>
@@ -20,7 +20,7 @@
     </ion-item>
   </ion-list>
 
-  <div *ngIf="daftarTransaksi.length === 0" class="ion-text-center ion-padding">
+  <div *ngIf="transaksiService.transactions.length === 0" class="ion-text-center ion-padding">
     <p>Belum ada riwayat transaksi yang tercatat.</p>
   </div>
 </ion-content>

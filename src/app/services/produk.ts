@@ -10,7 +10,7 @@ export class Produk {
             hargaBeli: 2800,
             hargaJual: 3500,
             stok: 20,
-            gambar: ''
+            gambar: 'https://www.indomie.co.id/Content/Product/indomie-goreng-spesial-plus_big.png'
         },
         {
             id: 2,
@@ -19,7 +19,7 @@ export class Produk {
             hargaBeli: 2500,
             hargaJual: 3500,
             stok: 15,
-            gambar: ''
+            gambar: 'https://cdn.bormadago.com/media/images/products/2021/06/DSC_0047_copy_TaS0jlu.jpg'
         },
         {
             id: 3,
@@ -28,7 +28,7 @@ export class Produk {
             hargaBeli: 3500,
             hargaJual: 5000,
             stok: 10,
-            gambar: ''
+            gambar: 'https://image.astronauts.cloud/product-images/2026/7/TehBotolSosroJasmine_df1c98a7-998f-418d-b004-c090c222e091_900x900.jpeg'
         },
         {
             id: 4,
@@ -37,7 +37,7 @@ export class Produk {
             hargaBeli: 7500,
             hargaJual: 9500,
             stok: 8,
-            gambar: ''
+            gambar: 'https://image.astronauts.cloud/product-images/2026/7/chitatosapipanggang1_5e594ccd-4ab3-4a4e-8ccc-6ea7e2515976_900x900.jpg'
         },
         {
             id: 5,
@@ -46,7 +46,7 @@ export class Produk {
             hargaBeli: 6000,
             hargaJual: 8000,
             stok: 12,
-            gambar: ''
+            gambar: 'https://cdn.kerbel.in/assets/product/product_NSMXI2WUZT_1692076113_1.webp'
         },
         {
             id: 6,
@@ -55,7 +55,7 @@ export class Produk {
             hargaBeli: 16000,
             hargaJual: 18500,
             stok: 6,
-            gambar: ''
+            gambar: 'https://cdn.bormadago.com/media/images/products/2021/04/2371a.jpg'
         },
         {
             id: 7,
@@ -64,7 +64,7 @@ export class Produk {
             hargaBeli: 15000,
             hargaJual: 17500,
             stok: 9,
-            gambar: ''
+            gambar: 'https://images.alodokter.com/dk0z4ums3/image/upload/v1762314536/attached_image/gula-pasir-inilah-manfaat-dan-risiko-di-baliknya-0-alodokter.jpg'
         },
         {
             id: 8,
@@ -73,7 +73,7 @@ export class Produk {
             hargaBeli: 1800,
             hargaJual: 2500,
             stok: 25,
-            gambar: ''
+            gambar: 'https://apps.santosjayaabadi.co.id/factoryoutlet/contents/images/lg/products/PRODUK_GOOD_DAY_CAPPUCCINO_(RTG,_12_X_10_X_25_GR)_(20171229020250).jpg'
         },
         {
             id: 9,
@@ -82,7 +82,7 @@ export class Produk {
             hargaBeli: 3500,
             hargaJual: 5000,
             stok: 7,
-            gambar: ''
+            gambar: 'https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/dve/dve03485/y/33.jpg'
         },
         {
             id: 10,
@@ -91,7 +91,7 @@ export class Produk {
             hargaBeli: 5000,
             hargaJual: 7000,
             stok: 0,
-            gambar: ''
+            gambar: 'https://image.astronauts.cloud/product-images/2026/7/UltraMilkFullCreamSu_e9418401-4eeb-49e3-9792-8e4b0df68843_900x900.jpg'
         }
     ];
     jumlahProduk() {
@@ -111,10 +111,12 @@ export class Produk {
     }
 
     tambahProduk(produk: any) {
+        produk.id = this.products.length + 1;
         this.products.push(produk);
     }
 
     editProduk(index: number, produk: any) {
+        produk.id = this.products[index].id;
         this.products[index] = produk;
     }
 }

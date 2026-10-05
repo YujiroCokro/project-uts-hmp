@@ -45,6 +45,14 @@
             <ion-label>Profil</ion-label>
           </ion-item>
         </ion-menu-toggle>
+
+        <ion-item>
+          <ion-icon name="moon" slot="start"></ion-icon>
+          <ion-toggle [checked]="theme.isDark"
+                      (ionChange)="theme.set($event.detail.checked)">
+            Mode Gelap
+          </ion-toggle>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>

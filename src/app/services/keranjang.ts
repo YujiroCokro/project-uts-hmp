@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
-@Injectable(
-  {providedIn: 'root'}
-)
-
+@Service()
 export class Keranjang {
-    items: any[] = [];
+  items: any[] = [];
 
-    tambahKeranjang(produk: any) {
-      this.items.push(produk);
-    }
+  tambahKeranjang(produk: any) {
+    this.items.push(produk);
+  }
+
+  hapusItem(i: number) {
+    this.items.splice(i, 1);
+  }
 }

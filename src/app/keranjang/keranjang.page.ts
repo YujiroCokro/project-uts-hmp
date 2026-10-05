@@ -16,7 +16,7 @@ export class KeranjangPage implements OnInit {
     public keranjangService: Keranjang,
     public transaksiService: Transaksi,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadKeranjang();
@@ -38,6 +38,10 @@ export class KeranjangPage implements OnInit {
     return total;
   }
 
+  hapusItem(i: number) {
+    this.keranjangService.hapusItem(i);
+  }
+
   konfirmasiTransaksi() {
     if (this.itemsKeranjang.length === 0) {
       alert('Keranjang masih kosong!');
@@ -50,10 +54,7 @@ export class KeranjangPage implements OnInit {
       total: this.hitungTotal()
     };
 
-    // Simpan ke service transaksi buatan temanmu
     this.transaksiService.tambahTransaksi(transaksiBaru);
-
-    // Kosongkan keranjang
     this.keranjangService.items = [];
     this.itemsKeranjang = [];
 
