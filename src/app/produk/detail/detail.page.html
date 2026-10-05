@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/produk"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detail Produk</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +13,20 @@
       <ion-title size="large">detail</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list *ngIf="products">
+    <ion-item>
+      <ion-label>
+        <h1>{{ products[id].nama }}</h1>
+        <p>Kategori: {{ products[id].kategori }}</p>
+        <p>Stok: {{ products[id].stok }}</p>
+        <p>Harga Beli: Rp {{ products[id].hargaBeli }}</p>
+        <p>Harga Jual: Rp {{ products[id].hargaJual }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" [disabled]="products[id].stok == 0" (click)="tambahKeranjang()">
+    Tambah ke Keranjang
+  </ion-button>
 </ion-content>

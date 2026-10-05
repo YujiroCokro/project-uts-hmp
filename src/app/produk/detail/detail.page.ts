@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Produk } from '../../services/produk';
+import { Keranjang } from '../../services/keranjang';
 
 @Component({
   selector: 'app-detail',
@@ -8,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailPage implements OnInit {
 
-  constructor() { }
+  id = 0;
+  products: any[] = [];
+
+  constructor(
+    private route:ActivatedRoute,
+    private produkService:Produk,
+    private keranjangService:Keranjang
+  ) { }
 
   ngOnInit() {
+    this.products = this.produkService.products;
+
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+    });
   }
 
+  tambahKeranjang() {
+    this.keranjangService.tambahKeranjang(this.products[this.id]);
+  }
 }

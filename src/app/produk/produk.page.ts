@@ -11,6 +11,7 @@ export class ProdukPage implements OnInit {
 
   products: any[] = [];
   keyword: string = '';
+  defaultImage: string = 'https://ubaya.cloud/no_image.jpg';
 
   constructor(private produkservice: Produk) { }
 
