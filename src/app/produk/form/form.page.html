@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/produk"></ion-back-button>
+    </ion-buttons>
     <ion-title>form</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,4 +13,52 @@
       <ion-title size="large">form</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <form [formGroup]="formProduk" (ngSubmit)="simpan()">
+    <ion-list>
+      <ion-item>
+        <ion-input label="Nama Produk" labelPlacement="floating" formControlName="nama"></ion-input>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="formProduk.get('nama')?.touched && formProduk.get('nama')?.invalid">
+        Nama produk wajib diisi.
+      </ion-text>
+
+      <ion-item>
+        <ion-input label="Kategori" labelPlacement="floating" formControlName="kategori"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="number" label="Harga Beli" labelPlacement="floating" formControlName="hargaBeli"></ion-input>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="formProduk.get('hargaBeli')?.touched && formProduk.get('hargaBeli')?.invalid">
+        Harga beli harus lebih dari 0.
+      </ion-text>
+
+      <ion-item>
+        <ion-input type="number" label="Harga Jual" labelPlacement="floating" formControlName="hargaJual"></ion-input>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="formProduk.get('hargaJual')?.touched && formProduk.get('hargaJual')?.invalid">
+        Harga jual harus lebih dari 0.
+      </ion-text>
+
+      <ion-item>
+        <ion-input type="number" label="Stok" labelPlacement="floating" formControlName="stok"></ion-input>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="formProduk.get('stok')?.touched && formProduk.get('stok')?.invalid">
+        Stok tidak boleh negatif.
+      </ion-text>
+
+      <ion-item>
+        <ion-input type="url" label="Gambar" labelPlacement="floating" formControlName="gambar"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-button type="submit">Simpan</ion-button>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>

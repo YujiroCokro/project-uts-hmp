@@ -109,4 +109,12 @@ export class Produk {
 
         return hasil;
     }
+
+    tambahProduk(produk: any) {
+        this.products.push(produk);
+    }
+
+    editProduk(index: number, produk: any) {
+        this.products[index] = produk;
+    }
 }
