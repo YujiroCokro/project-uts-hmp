@@ -1,16 +1,63 @@
 import { Component, OnInit } from '@angular/core';
+import { Keranjang } from '../services/keranjang';
+import { Transaksi } from '../services/transaksi';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-keranjang',
   templateUrl: './keranjang.page.html',
   styleUrls: ['./keranjang.page.scss'],
-  standalone: false,
+  standalone: false
 })
 export class KeranjangPage implements OnInit {
+  itemsKeranjang: any[] = [];
 
-  constructor() { }
+  constructor(
+    public keranjangService: Keranjang,
+    public transaksiService: Transaksi,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.loadKeranjang();
   }
 
+  ionViewWillEnter() {
+    this.loadKeranjang();
+  }
+
+  loadKeranjang() {
+    this.itemsKeranjang = this.keranjangService.items;
+  }
+
+  hitungTotal(): number {
+    let total = 0;
+    for (let item of this.itemsKeranjang) {
+      total += item.hargaJual;
+    }
+    return total;
+  }
+
+  konfirmasiTransaksi() {
+    if (this.itemsKeranjang.length === 0) {
+      alert('Keranjang masih kosong!');
+      return;
+    }
+
+    const transaksiBaru = {
+      tanggal: new Date(),
+      items: [...this.itemsKeranjang],
+      total: this.hitungTotal()
+    };
+
+    // Simpan ke service transaksi buatan temanmu
+    this.transaksiService.tambahTransaksi(transaksiBaru);
+
+    // Kosongkan keranjang
+    this.keranjangService.items = [];
+    this.itemsKeranjang = [];
+
+    alert('Transaksi berhasil dikonfirmasi!');
+    this.router.navigate(['/transaksi']);
+  }
 }

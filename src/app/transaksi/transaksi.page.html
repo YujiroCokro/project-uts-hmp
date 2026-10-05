@@ -1,16 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>transaksi</ion-title>
+    <ion-title>Riwayat Transaksi</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">transaksi</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-list *ngIf="daftarTransaksi.length > 0">
+    <ion-list-header>Daftar Riwayat</ion-list-header>
+    <!-- Setiap transaksi bisa diklik untuk membuka halaman detail berdasarkan index-nya -->
+    <ion-item *ngFor="let trx of daftarTransaksi; let i = index" (click)="tampilkanDetail(i)" button>
+      <ion-label>
+        <h3>Transaksi #{{ i + 1 }}</h3>
+        <p>Tanggal: {{ trx.tanggal | date:'medium' }}</p>
+        <p><b>Total: Rp {{ trx.total | number }}</b></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="daftarTransaksi.length === 0" class="ion-text-center ion-padding">
+    <p>Belum ada riwayat transaksi yang tercatat.</p>
+  </div>
 </ion-content>
