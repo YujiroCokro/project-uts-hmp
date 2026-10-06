@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private produkservice: Produk,
-    private transaksiservice: Transaksi
+    private transaksiservice: Transaksi,
   ) { }
 
   ngOnInit() {
@@ -24,8 +24,7 @@ export class HomePage implements OnInit {
     this.totalTransaksi = this.transaksiservice.jumlahTransaksi();
     this.produkTerlaris = this.transaksiservice.produkTerlaris();
   }
-
-  ionViewWillEnter() {
+  refresh() {
     this.totalProduk = this.produkservice.jumlahProduk();
     this.totalTransaksi = this.transaksiservice.jumlahTransaksi();
     this.produkTerlaris = this.transaksiservice.produkTerlaris();

@@ -14,20 +14,20 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list id="infoProduk"*ngIf="products">
-    <ion-img class="gambarProduk" [src]="products[id].gambar || 'assets/default.png'"></ion-img>
+  <ion-list id="infoProduk"*ngIf="produk">
+    <ion-img class="gambarProduk" [src]="produk.gambar || 'assets/default.png'"></ion-img>
     <ion-item>
       <ion-label>
-        <h1>{{ products[id].nama }}</h1>
-        <p>Kategori: {{ products[id].kategori }}</p>
-        <p>Stok: {{ products[id].stok }}</p>
-        <p>Harga Beli: Rp {{ products[id].hargaBeli }}</p>
-        <p>Harga Jual: Rp {{ products[id].hargaJual }}</p>
+        <h1>{{ produk.nama }}</h1>
+        <p>Kategori: {{ produk.kategori }}</p>
+        <p>Stok: {{ produk.stok }}</p>
+        <p>Harga Beli: Rp {{ produk.hargaBeli }}</p>
+        <p>Harga Jual: Rp {{ produk.hargaJual }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-button *ngIf="products" expand="block" [disabled]="products[id].stok == 0" (click)="tambahKeranjang()">
+  <ion-button *ngIf="produk" expand="block" [disabled]="produk.stok == 0" (click)="tambahKeranjang()">
     Tambah ke Keranjang
   </ion-button>
 </ion-content>

@@ -115,8 +115,29 @@ export class Produk {
         this.products.push(produk);
     }
 
-    editProduk(index: number, produk: any) {
-        produk.id = this.products[index].id;
-        this.products[index] = produk;
+    cariById(id: number) {
+        for (var i = 0; i < this.products.length; i++) {
+            if (this.products[i].id == id) {
+                return this.products[i];
+            }
+        }
+        return null;
+    }
+
+    editProduk(id: number, produk: any) {
+        for (var i = 0; i < this.products.length; i++) {
+            if (this.products[i].id == id) {
+                produk.id = id;
+                this.products[i] = produk;
+                return;
+            }
+        }
+    }
+
+    kurangiStok(id: number) {
+        var p = this.cariById(id);
+        if (p != null && p.stok > 0) {
+            p.stok--;
+        }
     }
 }

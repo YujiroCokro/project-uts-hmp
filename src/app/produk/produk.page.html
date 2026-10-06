@@ -18,29 +18,28 @@
     Tambah Produk
   </ion-button>
   <ion-item>
-    <ion-input
-      label="Cari Produk"
-      labelPlacement="floating"
-      [(ngModel)]="keyword"
-      (input)="filterProduk()">>
+    <ion-input label="Cari Produk" labelPlacement="floating" [(ngModel)]="keyword">
     </ion-input>
   </ion-item>
 
   <ion-list>
-    <ion-item *ngFor="let product of products; let i = index">
+    <ion-item *ngFor="let product of cariProduk();">
       <ion-thumbnail slot="start">
         <ion-img [src]="product.gambar || defaultImage"></ion-img>
       </ion-thumbnail>
-      <ion-label routerLink="/produk/detail/{{i}}">
+      <ion-label routerLink="/produk/detail/{{product.id}}">
         <h2>{{ product.nama }}</h2>
         <p>Kategori: {{ product.kategori }}</p>
         <p>Harga Jual: Rp {{ product.hargaJual }}</p>
         <p>Stok: {{ product.stok }}</p>
       </ion-label>
 
-      <ion-button routerLink="/produk/form/{{i}}">
+      <ion-button routerLink="/produk/form/{{product.id}}">
         Edit
       </ion-button>
     </ion-item>
   </ion-list>
+  <ion-button expand="block" (click)="refresh()">
+    Refresh
+  </ion-button>
 </ion-content>

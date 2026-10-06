@@ -23,4 +23,6 @@
   <div *ngIf="transaksiService.transactions.length === 0" class="ion-text-center ion-padding">
     <p>Belum ada riwayat transaksi yang tercatat.</p>
   </div>
+
+  <ion-button expand="block" (click)="refresh()">Refresh</ion-button>
 </ion-content>

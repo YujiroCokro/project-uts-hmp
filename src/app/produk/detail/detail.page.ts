@@ -13,7 +13,8 @@ import { AnimationController } from '@ionic/angular';
 export class DetailPage implements OnInit {
 
   id = 0;
-  products: any[] = [];
+  produk: any = null;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -23,10 +24,9 @@ export class DetailPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.products = this.produkService.products;
-
     this.route.params.subscribe(params => {
       this.id = Number(params['id']);
+      this.produk = this.produkService.cariById(this.id);
     });
   }
 
@@ -47,6 +47,8 @@ export class DetailPage implements OnInit {
   }
 
   tambahKeranjang() {
-    this.keranjangService.tambahKeranjang(this.products[this.id]);
+    if (!this.keranjangService.tambahKeranjang(this.produk)) {
+      alert('Stok tidak cukup!');
+    }
   }
 }

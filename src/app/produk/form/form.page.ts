@@ -14,7 +14,7 @@ export class FormPage implements OnInit {
   id = -1; //klo 0,1,2 dst buat ngedit produk yg udh ada sesuai index masing-masing
 
   // INI REACTIVE FORM
-   formProduk = new FormGroup({
+  formProduk = new FormGroup({
     nama: new FormControl('', Validators.required),
     kategori: new FormControl(''),
     hargaBeli: new FormControl(0, [Validators.required, Validators.min(1)]),
@@ -28,17 +28,19 @@ export class FormPage implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id'] != undefined) {
-        this.id = params['id'];
+        this.id = Number(params['id']);
 
-        let produk = this.produkService.products[this.id];
-        this.formProduk.patchValue({ //patchValue: buat mskin data produk yg dah ada ke dlm
-          nama: produk.nama,         //Reactive Form buat ditampilin sbgi data Edit.
-          kategori: produk.kategori,
-          hargaBeli: produk.hargaBeli,
-          hargaJual: produk.hargaJual,
-          stok: produk.stok,
-          gambar: produk.gambar
-        });
+        let produk = this.produkService.cariById(this.id);
+        if (produk) {
+          this.formProduk.patchValue({ //patchValue: buat mskin data produk yg dah ada ke dlm
+            nama: produk.nama,         //Reactive Form buat ditampilin sbgi data Edit.
+            kategori: produk.kategori,
+            hargaBeli: produk.hargaBeli,
+            hargaJual: produk.hargaJual,
+            stok: produk.stok,
+            gambar: produk.gambar
+          });
+        }
       }
     });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Transaksi } from '../services/transaksi';
 import { Router } from '@angular/router';
 
@@ -18,10 +18,9 @@ export class TransaksiPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadData();
   }
 
-  ionViewWillEnter() {
+  refresh() {
     this.loadData();
   }
 

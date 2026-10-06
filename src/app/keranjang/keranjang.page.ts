@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Keranjang } from '../services/keranjang';
 import { Transaksi } from '../services/transaksi';
 import { Router } from '@angular/router';
+import { Produk } from '../services/produk';
 
 @Component({
   selector: 'app-keranjang',
@@ -15,14 +16,15 @@ export class KeranjangPage implements OnInit {
   constructor(
     public keranjangService: Keranjang,
     public transaksiService: Transaksi,
-    private router: Router
+    private produkService: Produk,
+    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.loadKeranjang();
+
   }
 
-  ionViewWillEnter() {
+  refresh() {
     this.loadKeranjang();
   }
 
@@ -53,6 +55,10 @@ export class KeranjangPage implements OnInit {
       items: [...this.itemsKeranjang],
       total: this.hitungTotal()
     };
+
+    for (let item of this.itemsKeranjang) {
+      this.produkService.kurangiStok(item.id);
+    }
 
     this.transaksiService.tambahTransaksi(transaksiBaru);
     this.keranjangService.items = [];

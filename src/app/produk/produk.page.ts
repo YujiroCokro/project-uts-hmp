@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Produk } from '../services/produk';
 
 @Component({
@@ -9,18 +9,20 @@ import { Produk } from '../services/produk';
 })
 export class ProdukPage implements OnInit {
 
-  products: any[] = [];
   keyword: string = '';
-  defaultImage: string = 'https://ubaya.cloud/no_image.jpg';
+  defaultImage: string = 'assets/default.png';
 
   constructor(private produkservice: Produk) { }
 
   ngOnInit() {
-    this.products = this.produkservice.products;
+    
+  }
+  refresh() {
+    this.keyword = '';
   }
 
-  filterProduk() {
-    this.products = this.produkservice.cariProduk(this.keyword);
+  cariProduk() {
+    return this.produkservice.cariProduk(this.keyword);
   }
 
 }
